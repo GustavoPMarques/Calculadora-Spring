@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <h1>Calculadora Spring Boot</h1>
+    <form th:action="@{/calcular}" method="post">
+        <div>
+            <label>Valor1</label>
+            <input type="text" name="valor1" placeholder="Ex: 45.50">
+        </div>
+        <div>
+            <label>Valor2</label>
+            <input type="text" name="valor2" placeholder="Ex: 45.50">
+        </div>
+        <fieldset>
+            <legend>Escolha uma operação</legend>
+            <label><input type="radio" name="operacao" value="soma" checked>Soma</label>
+            <label><input type="radio" name="operacao" value="subtracao" th:checked ="${operacao} == 'subtracao' " >Subtração</label>
+            <label><input type="radio" name="operacao" value="multiplicacao "  th:checked ="${operacao} == 'multiplicacao' " >Multiplicação</label>
+            <label><input type="radio" name="operacao" value="divisao"  th:checked ="${operacao} == 'divisao' " >Divisão</label>
+        </fieldset>
+        <button type="submit">Calcular</button>
+    </form>
+    <section th:if="${resultado} != null">
+        <h2>Resultado</h2>
+        <p th:text="${resultado}"></p>
+    </section>
+    <section>
+        <h1> <p th:text="${erro}"></p> </h1>
+    </section>
+</body>
+</html>
