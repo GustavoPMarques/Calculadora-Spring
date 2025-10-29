@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>Calculadora Spring Boot</h1>
-    <form th:action="@{/calcular}" method="post">
+    <form th:action="@{/calcular}" method="post"> <!-- Post para enviar e Get para buscar -->
         <div>
             <label>Valor1</label>
             <input type="text" name="valor1" placeholder="Ex: 45.50">
@@ -20,16 +20,19 @@
             <legend>Escolha uma operação</legend>
             <label><input type="radio" name="operacao" value="soma" checked>Soma</label>
             <label><input type="radio" name="operacao" value="subtracao" th:checked ="${operacao} == 'subtracao' " >Subtração</label>
+            <!-- Checked mantem a opção que o usuario escolheu mesmo depois de mostrar o resultado -->
             <label><input type="radio" name="operacao" value="multiplicacao "  th:checked ="${operacao} == 'multiplicacao' " >Multiplicação</label>
             <label><input type="radio" name="operacao" value="divisao"  th:checked ="${operacao} == 'divisao' " >Divisão</label>
         </fieldset>
         <button type="submit">Calcular</button>
     </form>
     <section th:if="${resultado} != null">
+        <!-- só mostra o resultado se for diferente de null, ou seja, se houver um resultado -->
         <h2>Resultado</h2>
         <p th:text="${resultado}"></p>
     </section>
     <section>
+        <!-- se tiver erro ele mostra, se não tiver, fica em branco -->
         <h1> <p th:text="${erro}"></p> </h1>
     </section>
 </body>
